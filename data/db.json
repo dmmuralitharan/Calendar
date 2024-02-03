@@ -1,0 +1,46 @@
+{
+  "batch": [
+    {
+      "id":1,
+      "batch_code": "b001",
+      "lecture_start_date": "12-12-2023",
+      "lecture_end_date": "12-12-2024",
+      "location":"Legend Inn"
+    },
+    {
+      "id":2,
+      "batch_code": "b002",
+      "lecture_start_date": "01-01-2023",
+      "lecture_end_date": "01-02-2023",
+      "location":"Melanka"
+    },
+    {
+      "id":3,
+      "batch_code": "b003",
+      "lecture_start_date": "01-03-2023",
+      "lecture_end_date": "01-05-2023",
+      "location":"Legend Inn"
+    },
+    {
+      "id":4,
+      "batch_code": "b004",
+      "lecture_start_date": "01-06-2023",
+      "lecture_end_date": "15-06-2013",
+      "location":"Legend Inn"
+    },
+    {
+      "id":5,
+      "batch_code": "b005",
+      "lecture_start_date": "15-08-2023",
+      "lecture_end_date": "22-08-2013",
+      "location":"Legend Inn"
+    },
+    {
+      "id":6,
+      "batch_code": "b006",
+      "lecture_start_date": "15-12-2023",
+      "lecture_end_date": "30-12-2013",
+      "location":"Legend Inn"
+    }
+  ]
+}
