@@ -7,12 +7,13 @@ import { CalendarService } from '../../services/calendar.service';
   styleUrl: './calendar-view.component.css',
 })
 export class CalendarViewComponent {
-  days: string[] = ['Sun', 'Mon', 'The', 'Wed', 'Thu', 'Fri', 'Sat'];
+  days: string[] = []
   currentMonthDates: number[] = [];
   previousMonthDates: number[] = [];
   nextMonthDates: number[] = [];
 
   constructor(private _calendar: CalendarService) {
+    this.days = this._calendar.days;
     this._calendar.previousMonthDates$.subscribe((previousMonthDate) => {
       this.previousMonthDates = previousMonthDate;
     });

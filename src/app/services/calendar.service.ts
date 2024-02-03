@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class CalendarService {
-  // navbar
   monthYearTitle: string = '';
   months: string[] = [
     'January',
@@ -21,6 +20,12 @@ export class CalendarService {
     'November',
     'December',
   ];
+
+  previousMonthDates: number[] = [];
+  currentMonthDates: number[] = [];
+  nextMonthDates: number[] = [];
+  days: string[] = ['Sun', 'Mon', 'The', 'Wed', 'Thu', 'Fri', 'Sat'];
+
 
   private previousMonthDateSource = new BehaviorSubject<number[]>([]);
   previousMonthDates$ = this.previousMonthDateSource.asObservable();
@@ -69,11 +74,6 @@ export class CalendarService {
     this.currentMonthDateSource.next(this.currentMonthDates);
     this.nextMonthDateSource.next(this.nextMonthDates);
   }
-
-  //Calendar view
-  previousMonthDates: number[] = [];
-  currentMonthDates: number[] = [];
-  nextMonthDates: number[] = [];
 
   renderCalendarView(): void {
     this.previousMonthDates = [];
