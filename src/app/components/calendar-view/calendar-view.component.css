@@ -29,15 +29,13 @@
   .calendar-container .days {
     display: flex;
     flex-wrap: wrap;
-    
+    min-height: 80dvh;
   }
   
   .calendar-container .days .day-wrapper {
     display: flex;
     flex-direction: column;
     width: calc(100% / 7 );
-    height: calc(80dvh / 6);
-    /* height: calc(80dvh / 5); */
     border-left: 0.1px solid var(--hairline);
     border-bottom: 0.1px solid var(--hairline);
   }
