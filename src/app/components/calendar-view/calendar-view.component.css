@@ -74,3 +74,8 @@
     background-color: var(--bg-secondary);
     transform: translateY(-1px);
   }
+
+  .calendar-container .days .day-wrapper .day> span.active {
+    background-color: var(--bg-primary);
+    color: var(--text-light);
+  }
