@@ -1,0 +1,19 @@
+<main class="calendar-container">
+  <div class="weekdays">
+    <div class="day" *ngFor="let day of days">{{ day }}</div>
+  </div>
+  <div class="days">
+    <div class="day-wrapper" *ngFor="let previousMonthDate of previousMonthDates">
+      <div class="day prev"><span>{{ previousMonthDate }}</span></div>
+      <ul class="event-list"></ul>
+    </div>
+    <div class="day-wrapper" *ngFor="let currentMonthDate of currentMonthDates">
+      <div class="day"><span>{{ currentMonthDate }}</span></div>
+      <ul class="event-list"></ul>
+    </div>
+    <div class="day-wrapper" *ngFor="let nextMonthDate of nextMonthDates">
+      <div class="day next"><span>{{ nextMonthDate }}</span></div>
+      <ul class="event-list"></ul>
+    </div>
+  </div>
+</main>

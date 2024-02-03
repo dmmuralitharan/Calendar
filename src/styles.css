@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+:root {
+  --bg-light: #ffffff;
+  --bg-primary: #4285f4;
+  --bg-secondary: #ebecec;
+  --hairline: #dadce0;
+
+  --text-clr-200: #70757a;
+  /* --text-clr-500: #3c4043; */
+  --text-clr-500: #202224;
+  --text-clr-700: #5f6368;
+  --text-light: #ffffff;
+
+  --text-clr-weekdays: var(--text-clr-200);
+  --text-clr-primary: var(--text-clr-500);
+
+  --fw-light-300: 300;
+  --fw-regular-400: 400;
+  --fw-medium-500: 500;
+
+  --fw-navbar: var(--fw-regular-400);
+  --fw-calendar-view: var(--fw-medium-500);
+
+  --fs-smaller: 0.688rem;
+  --fs-normal: 0.75rem;
+  --fs-large: 1.375rem;
+
+  --fs-navbar: var(--fs-large);
+  --fs-weekdays: var(--fs-smaller);
+  --fs-days: var(--fs-normal);
+  --fs-event: var(--fs-normal);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background: #ffffff;
+}
