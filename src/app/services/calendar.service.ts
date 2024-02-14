@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +40,7 @@ export class CalendarService {
   currentMonth = this.date.getMonth();
   currentYear = this.date.getFullYear();
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   changeCurrentMonth(): void {
     this.currentMonth = this.date.getMonth();
@@ -107,4 +108,11 @@ export class CalendarService {
       this.nextMonthDates.push(j);
     }
   }
+
+   // get all events from the backend
+
+   API_URL = "http://localhost:3000"
+   getEvents(): Observable<any> {
+     return this.http.get(`${this.API_URL}/batch`)
+   }
 }

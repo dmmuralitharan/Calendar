@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CalendarService } from '../../services/calendar.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-calendar-view',
@@ -44,4 +45,7 @@ export class CalendarViewComponent {
     this._calendar.changeNextMonth();
     this.monthYearTitle = this._calendar.monthYearTitle;
   }
+
+  events$: Observable<any> = this._calendar.getEvents()
+
 }
