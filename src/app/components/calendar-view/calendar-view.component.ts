@@ -9,25 +9,16 @@ import { Observable } from 'rxjs';
 })
 export class CalendarViewComponent {
   monthYearTitle: string = '';
-  
   days: string[] = []
-  currentMonthDates: number[] = [];
-  previousMonthDates: number[] = [];
-  nextMonthDates: number[] = [];
+  monthDates: any = []
 
   constructor(private _calendar: CalendarService) {
     this._calendar.changeCurrentMonth();
     this.monthYearTitle = this._calendar.monthYearTitle;
     
     this.days = this._calendar.days;
-    this._calendar.previousMonthDates$.subscribe((previousMonthDate) => {
-      this.previousMonthDates = previousMonthDate;
-    });
-    this._calendar.currentMonthDates$.subscribe((nowMonthDate) => {
-      this.currentMonthDates = nowMonthDate;
-    });
-    this._calendar.nextMonthDates$.subscribe((nextMonthDate) => {
-      this.nextMonthDates = nextMonthDate;
+    this._calendar.monthDates$.subscribe((monthDate) => {
+      this.monthDates = monthDate;
     });
   }
 
@@ -47,5 +38,4 @@ export class CalendarViewComponent {
   }
 
   events$: Observable<any> = this._calendar.getEvents()
-
 }

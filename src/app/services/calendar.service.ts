@@ -22,18 +22,11 @@ export class CalendarService {
     'December',
   ];
 
-  previousMonthDates: number[] = [];
-  currentMonthDates: number[] = [];
-  nextMonthDates: number[] = [];
+  monthDates: any = [];
   days: string[] = ['Sun', 'Mon', 'The', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-
-  private previousMonthDateSource = new BehaviorSubject<number[]>([]);
-  previousMonthDates$ = this.previousMonthDateSource.asObservable();
-  private currentMonthDateSource = new BehaviorSubject<number[]>([]);
-  currentMonthDates$ = this.currentMonthDateSource.asObservable();
-  private nextMonthDateSource = new BehaviorSubject<number[]>([]);
-  nextMonthDates$ = this.nextMonthDateSource.asObservable();
+  private monthDatesSource = new BehaviorSubject<number[]>([]);
+  monthDates$ = this.monthDatesSource.asObservable();
 
   date: Date = new Date();
   currentDate = this.date.getDate();
@@ -71,15 +64,11 @@ export class CalendarService {
     this.monthYearTitle = `${this.months[this.currentMonth]} ${
       this.currentYear
     }`;
-    this.previousMonthDateSource.next(this.previousMonthDates);
-    this.currentMonthDateSource.next(this.currentMonthDates);
-    this.nextMonthDateSource.next(this.nextMonthDates);
+    this.monthDatesSource.next(this.monthDates);
   }
 
   renderCalendarView(): void {
-    this.previousMonthDates = [];
-    this.currentMonthDates = [];
-    this.nextMonthDates = [];
+    this.monthDates = [];
     const firstDay = new Date(this.currentYear, this.currentMonth, 1);
     const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
     const lastDayIndex = lastDay.getDay();
@@ -89,7 +78,14 @@ export class CalendarService {
     const nextDays = 7 - lastDayIndex - 1;
 
     for (let x = firstDay.getDay(); x > 0; x--) {
-      this.previousMonthDates.push(prevLastDayDate - x + 1);
+      this.monthDates.push({
+        date: this.createDateFromDMY(
+          `${this.currentYear}-${this.currentMonth}-${prevLastDayDate - x + 1}`
+        ),
+        isPastMonthDay: true,
+        isCurrentMonthDay: false,
+        isNextMonthDay: false,
+      });
     }
 
     for (let i = 1; i <= lastDayDate; i++) {
@@ -98,15 +94,46 @@ export class CalendarService {
         this.currentMonth === new Date().getMonth() &&
         this.currentYear === new Date().getFullYear()
       ) {
-        this.currentMonthDates.push(i);
+        this.monthDates.push({
+          date: this.createDateFromDMY(
+            `${this.currentYear}-${this.currentMonth + 1}-${i}`
+          ),
+          isPastMonthDay: false,
+          isCurrentMonthDay: true,
+          isNextMonthDay: false,
+        });
       } else {
-        this.currentMonthDates.push(i);
+        this.monthDates.push({
+          date: this.createDateFromDMY(
+            `${this.currentYear}-${this.currentMonth + 1}-${i}`
+          ),
+          isPastMonthDay: false,
+          isCurrentMonthDay: true,
+          isNextMonthDay: false,
+        });
       }
     }
 
     for (let j = 1; j <= nextDays; j++) {
-      this.nextMonthDates.push(j);
+      this.monthDates.push({
+        date: this.createDateFromDMY(
+          `${this.currentYear}-${this.currentMonth + 2}-${j}`
+        ),
+        isPastMonthDay: false,
+        isCurrentMonthDay: false,
+        isNextMonthDay: true,
+      });
     }
+  }
+
+  createDateFromDMY(dateString: any): Date {
+    let _parts = dateString.split('-');
+    let _year = _parts[0];
+    let _month = _parts[1];
+    let _day = _parts[2];
+    _day = _day.padStart(2, '0');
+    _month = _month.padStart(2, '0');
+    return new Date(_year, _month - 1, _day);
   }
 
    // get all events from the backend
