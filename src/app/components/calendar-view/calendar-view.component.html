@@ -1,15 +1,15 @@
 <header>
   <div class="month">{{ monthYearTitle }}</div>
   <div class="btns">
-      <div class="btn today" (click)="currentMonthBtn()">
-          Today
-      </div>
-      <div class="btn prev" title="Previous month" (click)="previousMonthBtn()">
-          <span>&lt;</span>
-      </div>
-      <div class="btn next" title="Next month" (click)="nextMonthBtn()">
-          <span>&gt;</span>
-      </div>
+    <div class="btn today" (click)="currentMonthBtn()">
+      Today
+    </div>
+    <div class="btn prev" title="Previous month" (click)="previousMonthBtn()">
+      <span>&lt;</span>
+    </div>
+    <div class="btn next" title="Next month" (click)="nextMonthBtn()">
+      <span>&gt;</span>
+    </div>
   </div>
 </header>
 
@@ -20,12 +20,20 @@
   <div class="presentation">
     <div class="days">
       <div class="day-wrapper" *ngFor="let monthDate of monthDates">
-        <div class="day" [class.prev]="monthDate.isPastMonthDay" [class.next]="monthDate.isNextMonthDay"> <span>{{ (monthDate.date | date: 'd') }}</span>
+        <div class="day" [class.prev]="monthDate.isPastMonthDay" [class.next]="monthDate.isNextMonthDay"> <span>{{
+            (monthDate.date | date: 'd') }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="events">
+      <div class="day-wrapper" *ngFor="let monthDate of monthDates">
+        <div class="day">
+          <span class="has-event if-event-end">hello</span>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div *ngFor="let event of (events$ | async)">
+    <!-- <div *ngFor="let event of (events$ | async)">
     {{ event | json }}
   </div> -->
 

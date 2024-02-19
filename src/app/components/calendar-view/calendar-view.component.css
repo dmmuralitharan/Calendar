@@ -54,6 +54,7 @@ header .btns .btn.today:hover {
     flex-direction: column;
     margin: 0rem 0.1rem;
     height: 80dvh;
+    /* position: relative; */
   }
   
   .calendar-container .weekdays {
@@ -76,14 +77,20 @@ header .btns .btn.today:hover {
     width: calc(100 / 7 + 1px);
     border-right: 0.1px solid var(--hairline);
   }
+
+  .calendar-container .presentation {
+    position: relative;
+  }
   
-  .calendar-container .days {
+  .calendar-container .days,
+  .calendar-container .events {
     display: flex;
     flex-wrap: wrap;
     min-height: 80dvh;
   }
   
-  .calendar-container .days .day-wrapper {
+  .calendar-container .days .day-wrapper ,
+  .calendar-container .events .day-wrapper {
     display: flex;
     flex-direction: column;
     width: calc(100% / 7 );
@@ -91,11 +98,13 @@ header .btns .btn.today:hover {
     border-bottom: 0.1px solid var(--hairline);
   }
   
-  .calendar-container .days:last-child {
+  .calendar-container .days:last-child,
+  .calendar-container .events:last-child  {
     border-right: 0.1px solid var(--hairline);
   }
   
-  .calendar-container .days .day-wrapper .day {
+  .calendar-container .days .day-wrapper .day,
+  .calendar-container .events .day-wrapper .day {
     text-align: center;
     transition: all 0.3s;
     display: flex;
@@ -107,12 +116,42 @@ header .btns .btn.today:hover {
     height: 30px;
   }
   
-  .calendar-container .days .day-wrapper .day > span{
+  .calendar-container .days .day-wrapper .day > span { 
     height: 25px;
     width: 25px;
     padding: 5px;
     border-radius: 50%;
   }
+    
+  .calendar-container .events .day-wrapper .day  { 
+    margin-top: 2rem;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+  }
+ 
+  .calendar-container .events .day-wrapper .day > span {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+  }
+  
+   span.has-event {
+    margin-top: 1px;
+    padding: 4px 0px ;
+    background-color: lightgreen;
+  }
+
+  span.has-event.if-event-start {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  span.has-event.if-event-end {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: calc(100% - 5px) !important;
+  } 
   
   .calendar-container .days .day-wrapper .day.next,
   .calendar-container .days .day-wrapper .day.prev {
@@ -128,3 +167,20 @@ header .btns .btn.today:hover {
     background-color: var(--bg-primary);
     color: var(--text-light);
   }
+
+    /* event */
+    .calendar-container .events {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: -1;
+      /* height: calc(100%-30px); */
+    }
+  
+    .calendar-container .events,
+    .calendar-container .events:last-child ,
+    .calendar-container .events .day-wrapper
+    {
+      border: none !important;
+    }

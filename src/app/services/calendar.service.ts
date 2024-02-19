@@ -32,6 +32,8 @@ export class CalendarService {
   currentDate = this.date.getDate();
   currentMonth = this.date.getMonth();
   currentYear = this.date.getFullYear();
+  API_URL = "http://localhost:3000"
+  events$: Observable<any> = this.getEvents();
 
   constructor(private http: HttpClient) {}
 
@@ -136,10 +138,21 @@ export class CalendarService {
     return new Date(_year, _month - 1, _day);
   }
 
-   // get all events from the backend
-
-   API_URL = "http://localhost:3000"
    getEvents(): Observable<any> {
      return this.http.get(`${this.API_URL}/batch`)
    }
+
+   events(currentDate: Date): any[] {
+    const events = this.events$.subscribe((data) => {
+      // console.log(data);
+      let eve = data.filter(function (item: any) {
+        console.log(new Date(item.lecture_start_date), currentDate);
+        
+        return new Date(item.lecture_start_date) === currentDate;
+      });
+      // console.log(eve);
+      return eve;
+    });
+    return [events];
+  }
 }
