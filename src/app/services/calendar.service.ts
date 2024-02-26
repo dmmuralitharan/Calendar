@@ -172,7 +172,6 @@ export class CalendarService {
   }
 
   ifEventEnd(monthDate: Date, eventEndDate: Date): boolean {
-    console.log(eventEndDate);
     eventEndDate = new Date(eventEndDate)
     return (
       monthDate.getFullYear() === eventEndDate.getFullYear() &&
