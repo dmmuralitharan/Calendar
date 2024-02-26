@@ -1,46 +1,58 @@
 {
   "batch": [
     {
-      "id":1,
+      "id": 1,
       "batch_code": "b001",
-      "lecture_start_date": "2024-02-07",
-      "lecture_end_date": "2024-02-10",
-      "location":"Legend Inn"
+      "start_date": "Tue Feb 13 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "end_date": "Thu Feb 15 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "description": "Hello world",
+      "background_color": "#00ff0077",
+      "location": "Legend Inn"
     },
     {
-      "id":2,
+      "id": 2,
       "batch_code": "b002",
-      "lecture_start_date": "2024-02-02",
-      "lecture_end_date": "2024-03-02",
-      "location":"Melanka"
+      "start_date": "Fri Feb 23 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "end_date": "Wed Feb 28 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "description": "Hello world",
+      "background_color": "#ff00ff77",
+      "location": "Melanka"
     },
     {
-      "id":3,
+      "id": 3,
       "batch_code": "b003",
-      "lecture_start_date": "2024-04-02",
-      "lecture_end_date": "2024-04-02",
-      "location":"Legend Inn"
+      "start_date": "Tue Feb 06 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "end_date": "Sat Feb 10 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "description": "event - 1",
+      "background_color": "#ff000077",
+      "location": "Legend Inn"
     },
     {
-      "id":4,
+      "id": 4,
       "batch_code": "b004",
-      "lecture_start_date": "2024-03-05",
-      "lecture_end_date": "2024-03-08",
-      "location":"Legend Inn"
+      "start_date": "Sat Mar 16 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "end_date": "Tue Mar 19 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "description": "event - mar event",
+      "background_color": "#ff000077",
+      "location": "Legend Inn"
     },
     {
-      "id":5,
+      "id": 5,
       "batch_code": "b005",
-      "lecture_start_date": "2024-02-20",
-      "lecture_end_date": "2024-02-22",
-      "location":"Legend Inn"
+      "start_date": "Tue Feb 06 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "end_date": "Thu Feb 15 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "description": "event - 2",
+      "background_color": "#0000ff",
+      "location": "Legend Inn"
     },
     {
-      "id":6,
+      "id": 6,
       "batch_code": "b006",
-      "lecture_start_date": "2024-06-12",
-      "lecture_end_date": "2024-07-22",
-      "location":"Legend Inn"
+      "start_date": "Wed Feb 07 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "end_date": "Wed Feb 07 2024 00:00:00 GMT+0530 (India Standard Time)",
+      "description": "event - 3",
+      "background_color": "#00ff00",
+      "location": "Legend Inn"
     }
   ]
 }

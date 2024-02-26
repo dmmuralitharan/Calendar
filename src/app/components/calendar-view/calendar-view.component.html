@@ -34,8 +34,8 @@
             <div class="has-event" [style.backgroundColor]="event.background_color"
               [class.if-event-start]="ifEventStart(monthDate.date, event.start_date)"
               [class.if-event-end]="ifEventEnd(monthDate.date, event.end_date)">
-              
-              <div *ngIf="(monthDate.date).getDate() == (event.start_date).getDate(); else hiddenEventTitle">
+
+              <div *ngIf="eventTitle(monthDate.date, event.start_date); else hiddenEventTitle">
                 {{ event.description}}
               </div>
 
