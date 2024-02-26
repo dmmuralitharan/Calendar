@@ -18,23 +18,36 @@
     <div class="day" *ngFor="let day of days">{{ day }}</div>
   </div>
   <div class="presentation">
+    <!-- for  grid styles-->
     <div class="days">
       <div class="day-wrapper" *ngFor="let monthDate of monthDates">
-        <div class="day" [class.prev]="monthDate.isPastMonthDay" [class.next]="monthDate.isNextMonthDay"> <span>{{
-            (monthDate.date | date: 'd') }}</span>
-        </div>
       </div>
     </div>
+    <!-- for calendar logic -->
     <div class="events">
       <div class="day-wrapper" *ngFor="let monthDate of monthDates">
-        <div class="day">
-          <span class="has-event if-event-end">hello</span>
+        <div class="day" [class.next-or-prev]="monthDate.isPastMonthDay || monthDate.isNextMonthDay">
+          <span>{{ (monthDate.date | date: 'd') }}</span>
         </div>
+        <ng-container *ngIf="getEventsByDay(monthDate.date).length > 0">
+          <ng-container *ngFor="let event of getEventsByDay(monthDate.date); let i=index">
+            <div class="has-event" [style.backgroundColor]="event.background_color"
+              [class.if-event-start]="ifEventStart(monthDate.date, event.start_date)"
+              [class.if-event-end]="ifEventEnd(monthDate.date, event.end_date)">
+              
+              <div *ngIf="(monthDate.date).getDate() == (event.start_date).getDate(); else hiddenEventTitle">
+                {{ event.description}}
+              </div>
+
+              <ng-template #hiddenEventTitle>
+                <div style="opacity: 0;">
+                  {{ event.description}}
+                </div>
+              </ng-template>
+            </div>
+          </ng-container>
+        </ng-container>
       </div>
     </div>
   </div>
-    <!-- <div *ngFor="let event of (events$ | async)">
-    {{ event | json }}
-  </div> -->
-
 </main>

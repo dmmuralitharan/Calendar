@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { monthDate } from '../models/monthDate';
+import {event} from '../models/event'
 
 @Injectable({
   providedIn: 'root',
@@ -22,10 +24,10 @@ export class CalendarService {
     'December',
   ];
 
-  monthDates: any = [];
+  monthDates: monthDate[] = [];
   days: string[] = ['Sun', 'Mon', 'The', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  private monthDatesSource = new BehaviorSubject<number[]>([]);
+  private monthDatesSource = new BehaviorSubject<monthDate[]>([]);
   monthDates$ = this.monthDatesSource.asObservable();
 
   date: Date = new Date();
@@ -34,6 +36,41 @@ export class CalendarService {
   currentYear = this.date.getFullYear();
   API_URL = "http://localhost:3000"
   events$: Observable<any> = this.getEvents();
+
+   // events: event[] = []
+   events: event[] = [
+    {
+      start_date: new Date('2024-02-13T00:00:00'),
+      end_date: new Date('2024-02-15T00:00:00'),
+      description: 'Hello world',
+      background_color: '#00ff0077',
+    },
+    {
+      start_date: new Date('2024-02-23T00:00:00'),
+      end_date: new Date('2024-02-28T00:00:00'),
+      description: 'Hello world',
+      background_color: '#ff00ff77',
+    },
+    {
+      start_date: new Date('2024-02-06T00:00:00'),
+      end_date: new Date('2024-02-10T00:00:00'),
+      description: 'event - 1',
+      background_color: '#ff000077',
+    },
+    // {
+    //   start_date: new Date('2024-02-06T00:00:00'),
+    //   end_date: new Date('2024-02-15T00:00:00'),
+    //   description: "event - 2",
+    //   background_color: "#0000ff"
+    // },
+    // {
+    //   start_date: new Date('2024-02-07T00:00:00'),
+    //   end_date: new Date('2024-02-09T12:00:00'),
+    //   description: "event - 3",
+    //   background_color: "#00ff00"
+    // }
+  ];
+
 
   constructor(private http: HttpClient) {}
 
@@ -142,17 +179,27 @@ export class CalendarService {
      return this.http.get(`${this.API_URL}/batch`)
    }
 
-   events(currentDate: Date): any[] {
-    const events = this.events$.subscribe((data) => {
-      // console.log(data);
-      let eve = data.filter(function (item: any) {
-        console.log(new Date(item.lecture_start_date), currentDate);
-        
-        return new Date(item.lecture_start_date) === currentDate;
-      });
-      // console.log(eve);
-      return eve;
+   
+  getEventsByDay(day: Date) {
+    let filteredevents: event[] = this.events.filter((event) => {
+      return day >= event.start_date && day <= event.end_date;
     });
-    return [events];
+    return filteredevents;
+  }
+
+  ifEventStart(monthDate: Date, eventStartDate: Date): boolean {
+    return (
+      monthDate.getFullYear() === eventStartDate.getFullYear() &&
+      monthDate.getMonth() === eventStartDate.getMonth() &&
+      monthDate.getDate() === eventStartDate.getDate()
+    );
+  }
+
+  ifEventEnd(monthDate: Date, eventEndDate: Date): boolean {
+    return (
+      monthDate.getFullYear() === eventEndDate.getFullYear() &&
+      monthDate.getMonth() === eventEndDate.getMonth() &&
+      monthDate.getDate() === eventEndDate.getDate()
+    );
   }
 }

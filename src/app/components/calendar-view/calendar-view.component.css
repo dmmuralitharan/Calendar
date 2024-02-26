@@ -50,137 +50,129 @@ header .btns .btn.today:hover {
 }
 
 .calendar-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0rem 0.1rem;
-    height: 80dvh;
-    /* position: relative; */
-  }
-  
-  .calendar-container .weekdays {
-    display: flex;
-    text-transform: uppercase;
-    color: var(--text-clr-weekdays);
-    font-size: var(--fs-smaller);
-    font-weight: var(--fw-calendar-view);
-  }
-  
-  .calendar-container .weekdays .day {
-    padding-top: 5px;
-    width: calc(100% / 7 - 0.1px);
-    text-align: center;
-    border-top: 0.1px solid var(--hairline);
-    border-left: 0.1px solid var(--hairline);
-  }
-  
-  .calendar-container .weekdays .day:last-child {
-    width: calc(100 / 7 + 1px);
-    border-right: 0.1px solid var(--hairline);
-  }
+  display: flex;
+  flex-direction: column;
+  margin: 0rem 0.1rem;
+  height: 80dvh;
+  /* position: relative; */
+}
 
-  .calendar-container .presentation {
-    position: relative;
-  }
-  
-  .calendar-container .days,
-  .calendar-container .events {
-    display: flex;
-    flex-wrap: wrap;
-    min-height: 80dvh;
-  }
-  
-  .calendar-container .days .day-wrapper ,
-  .calendar-container .events .day-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: calc(100% / 7 );
-    border-left: 0.1px solid var(--hairline);
-    border-bottom: 0.1px solid var(--hairline);
-  }
-  
-  .calendar-container .days:last-child,
-  .calendar-container .events:last-child  {
-    border-right: 0.1px solid var(--hairline);
-  }
-  
-  .calendar-container .days .day-wrapper .day,
-  .calendar-container .events .day-wrapper .day {
-    text-align: center;
-    transition: all 0.3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-clr-primary);
-    font-size: var(--fs-normal);
-    font-weight: var(--fw-regular-400) ;
-    height: 30px;
-  }
-  
-  .calendar-container .days .day-wrapper .day > span { 
-    height: 25px;
-    width: 25px;
-    padding: 5px;
-    border-radius: 50%;
-  }
-    
-  .calendar-container .events .day-wrapper .day  { 
-    margin-top: 2rem;
-    font-weight: bold;
-    display: block;
-    width: 100%;
-  }
- 
-  .calendar-container .events .day-wrapper .day > span {
-    font-weight: bold;
-    display: block;
-    width: 100%;
-  }
-  
-   span.has-event {
-    margin-top: 1px;
-    padding: 4px 0px ;
-    background-color: lightgreen;
-  }
+.calendar-container .weekdays {
+  display: flex;
+  text-transform: uppercase;
+  color: var(--text-clr-weekdays);
+  font-size: var(--fs-smaller);
+  font-weight: var(--fw-calendar-view);
+}
 
-  span.has-event.if-event-start {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-  }
+.calendar-container .weekdays .day {
+  padding-top: 5px;
+  width: calc(100% / 7 - 0.1px);
+  text-align: center;
+  border-top: 0.1px solid var(--hairline);
+  border-left: 0.1px solid var(--hairline);
+}
 
-  span.has-event.if-event-end {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    width: calc(100% - 5px) !important;
-  } 
-  
-  .calendar-container .days .day-wrapper .day.next,
-  .calendar-container .days .day-wrapper .day.prev {
-    color: var(--text-clr-weekdays);
-  }
-  
-  .calendar-container .days .day-wrapper .day > span:hover {
-    background-color: var(--bg-secondary);
-    transform: translateY(-1px);
-  }
+.calendar-container .weekdays .day:last-child {
+  width: calc(100 / 7 + 1px);
+  border-right: 0.1px solid var(--hairline);
+}
 
-  .calendar-container .days .day-wrapper .day> span.active {
-    background-color: var(--bg-primary);
-    color: var(--text-light);
-  }
+.calendar-container .presentation {
+  position: relative;
+}
 
-    /* event */
-    .calendar-container .events {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: -1;
-      /* height: calc(100%-30px); */
-    }
-  
-    .calendar-container .events,
-    .calendar-container .events:last-child ,
-    .calendar-container .events .day-wrapper
-    {
-      border: none !important;
-    }
+.calendar-container .days,
+.calendar-container .events {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 80dvh;
+}
+
+.calendar-container .days {
+  border-right: 0.1px solid var(--hairline);
+}
+
+.calendar-container .days .day-wrapper,
+.calendar-container .events .day-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: calc((100% / 7) - 0.001px);
+  border-left: 0.1px solid var(--hairline);
+  border-bottom: 0.1px solid var(--hairline);
+}
+
+.calendar-container .days .day-wrapper .day,
+.calendar-container .events .day-wrapper .day {
+  text-align: center;
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-clr-primary);
+  font-size: var(--fs-normal);
+  font-weight: var(--fw-regular-400);
+  height: 30px;
+}
+
+.calendar-container .days .day-wrapper .day > span,
+.calendar-container .events .day-wrapper .day > span {
+  height: 25px;
+  width: 25px;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.has-event {
+  margin-top: 1px;
+  padding: 2px 2px 2px 8px;
+  font-size: var(--fs-normal);
+  font-weight: var(--fw-medium-500);
+}
+
+.if-event-start {
+  margin-left: 2.5px;
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+  padding: 2px 2px 2px 8px;
+}
+
+.if-event-end {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+  width: calc(100% - 5px) !important;
+  padding: 2px 2px 2px 8px;
+}
+
+.calendar-container .days .day-wrapper .day.next-or-prev,
+.calendar-container .events .day-wrapper .day.next-or-prev {
+  color: var(--text-clr-weekdays);
+}
+
+.calendar-container .days .day-wrapper .day > span:hover,
+.calendar-container .events .day-wrapper .day > span:hover {
+  background-color: var(--bg-secondary);
+  transform: translateY(-1px);
+}
+
+.calendar-container .days .day-wrapper .day > span.active,
+.calendar-container .events .day-wrapper .day > span.active {
+  background-color: var(--bg-primary);
+  color: var(--text-light);
+}
+
+/* event */
+.calendar-container .events {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.calendar-container .events,
+.calendar-container .events:last-child,
+.calendar-container .events .day-wrapper {
+  border: none !important;
+}
+
