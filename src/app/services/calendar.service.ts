@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { monthDate } from '../models/monthDate';
 import { event } from '../models/event';
 
@@ -37,7 +37,7 @@ export class CalendarService {
 
   private API_URL = 'http://localhost:3000';
   events: event[] = [];
- 
+
   constructor(private http: HttpClient) {}
 
   getEvents(): Observable<event[]> {
@@ -46,12 +46,25 @@ export class CalendarService {
 
   fetchEvents(): void {
     this.getEvents().subscribe((data: event[]) => {
-      this.events = [...data]; 
+      this.events = this.eventSort([...data]);
+      // return this.events
     });
   }
 
-  getStoredEvents(): any[] {
-    return this.events;
+  eventSort(events: event[]) {
+    events.sort((a: any, b: any) => {
+      const startDateA = new Date(a.start_date);
+      const endDateA = new Date(a.end_date);
+      const startDateB = new Date(b.start_date);
+      const endDateB = new Date(b.end_date);
+
+      const dateGapA = endDateA.getTime() - startDateA.getTime();
+      const dateGapB = endDateB.getTime() - startDateB.getTime();
+
+      return dateGapB - dateGapA;
+    });
+
+    return events;
   }
 
   changeCurrentMonth(): void {
@@ -84,6 +97,7 @@ export class CalendarService {
       this.currentYear
     }`;
     this.monthDatesSource.next(this.monthDates);
+    console.log(this.monthDates);
   }
 
   renderCalendarView(): void {
@@ -104,6 +118,7 @@ export class CalendarService {
         isPastMonthDay: true,
         isCurrentMonthDay: false,
         isNextMonthDay: false,
+        hasEvent: false,
       });
     }
 
@@ -120,6 +135,7 @@ export class CalendarService {
           isPastMonthDay: false,
           isCurrentMonthDay: true,
           isNextMonthDay: false,
+          hasEvent: false,
         });
       } else {
         this.monthDates.push({
@@ -129,6 +145,7 @@ export class CalendarService {
           isPastMonthDay: false,
           isCurrentMonthDay: true,
           isNextMonthDay: false,
+          hasEvent: false,
         });
       }
     }
@@ -141,6 +158,7 @@ export class CalendarService {
         isPastMonthDay: false,
         isCurrentMonthDay: false,
         isNextMonthDay: true,
+        hasEvent: false,
       });
     }
   }
@@ -155,15 +173,41 @@ export class CalendarService {
     return new Date(_year, _month - 1, _day);
   }
 
-  getEventsByDay(day: Date) {
-    let filteredevents: event[] = this.events.filter((event) => {
-      return day >= new Date(event.start_date) && day <= new Date(event.end_date);
+  emptyEvent: event = {
+    id: 0,
+    batch_code: '0000',
+    start_date: new Date(),
+    end_date: new Date(),
+    description: 'empty',
+    background_color: '#999999',
+    location: 'empty',
+  };
+
+  getEventsByDay(monthDate: monthDate) {
+    let day = monthDate.date;
+    let filteredEvents: event[] = [];
+    let hasEvents = false;
+
+    this.events.forEach((event) => {
+      let eventStartDate = new Date(event.start_date);
+      let eventEndDate = new Date(event.end_date);
+
+      if (day >= eventStartDate && day <= eventEndDate) {
+        filteredEvents.push(event);
+        hasEvents = true;
+      }
+      //  else {
+      //   filteredEvents.push(this.emptyEvent)
+      //   hasEvents = false;
+      // }
     });
-    return filteredevents;
+
+    monthDate.hasEvent = hasEvents;
+    return filteredEvents;
   }
 
   ifEventStart(monthDate: Date, eventStartDate: Date): boolean {
-    eventStartDate = new Date(eventStartDate)
+    eventStartDate = new Date(eventStartDate);
     return (
       monthDate.getFullYear() === eventStartDate.getFullYear() &&
       monthDate.getMonth() === eventStartDate.getMonth() &&
@@ -172,7 +216,7 @@ export class CalendarService {
   }
 
   ifEventEnd(monthDate: Date, eventEndDate: Date): boolean {
-    eventEndDate = new Date(eventEndDate)
+    eventEndDate = new Date(eventEndDate);
     return (
       monthDate.getFullYear() === eventEndDate.getFullYear() &&
       monthDate.getMonth() === eventEndDate.getMonth() &&
@@ -181,8 +225,6 @@ export class CalendarService {
   }
 
   eventTitle(monthDate: Date, eventStartDate: Date) {
-    return(
-      monthDate.getDate() == new Date(eventStartDate).getDate()
-    )
+    return monthDate.getDate() == new Date(eventStartDate).getDate();
   }
 }

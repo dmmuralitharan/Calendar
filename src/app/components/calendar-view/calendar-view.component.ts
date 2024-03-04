@@ -23,8 +23,8 @@ export class CalendarViewComponent implements OnInit {
     this._calendar.monthDates$.subscribe((monthDate) => {
       this.monthDates = monthDate;
     });
-    this._calendar.fetchEvents(); 
-    this.events = this._calendar.events
+    this._calendar.fetchEvents();
+    this.events = this._calendar.events;
   }
 
   currentMonthBtn(): void {
@@ -42,8 +42,8 @@ export class CalendarViewComponent implements OnInit {
     this.monthYearTitle = this._calendar.monthYearTitle;
   }
 
-  getEventsByDay(day: Date) {
-    return this._calendar.getEventsByDay(day);
+  getEventsByDay(monthDate: monthDate) {
+    return this._calendar.getEventsByDay(monthDate);
   }
 
   ifEventStart(monthDate: Date, eventStartDate: Date): boolean {

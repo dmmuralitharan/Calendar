@@ -54,7 +54,6 @@ header .btns .btn.today:hover {
   flex-direction: column;
   margin: 0rem 0.1rem;
   height: 80dvh;
-  /* position: relative; */
 }
 
 .calendar-container .weekdays {
@@ -144,6 +143,11 @@ header .btns .btn.today:hover {
   padding: 2px 2px 2px 8px;
 }
 
+.if-empty-event {
+  /* display: none; */
+  opacity: 0;
+}
+
 .calendar-container .days .day-wrapper .day.next-or-prev,
 .calendar-container .events .day-wrapper .day.next-or-prev {
   color: var(--text-clr-weekdays);
@@ -163,8 +167,9 @@ header .btns .btn.today:hover {
 
 /* event */
 .calendar-container .events {
+  text-wrap: nowrap;
   position: absolute;
-  top: 15px;
+  top: 50px;
   left: 0;
   width: 100%;
   z-index: 1;
@@ -175,6 +180,8 @@ header .btns .btn.today:hover {
 .calendar-container .events .day-wrapper {
   border: none !important;
 }
+
+
 
 
 /* ------ */

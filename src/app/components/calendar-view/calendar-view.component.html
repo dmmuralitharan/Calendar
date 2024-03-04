@@ -21,20 +21,22 @@
     <!-- for  grid styles-->
     <div class="days">
       <div class="day-wrapper" *ngFor="let monthDate of monthDates">
+        <div class="day" [class.next-or-prev]="monthDate.isPastMonthDay || monthDate.isNextMonthDay">
+          <span>{{ (monthDate.date | date: 'd') }}</span>
+        </div>
       </div>
     </div>
     <!-- for calendar logic -->
     <div class="events">
       <div class="day-wrapper" *ngFor="let monthDate of monthDates">
-        <div class="day" [class.next-or-prev]="monthDate.isPastMonthDay || monthDate.isNextMonthDay">
-          <span>{{ (monthDate.date | date: 'd') }}</span>
-        </div>
-        <ng-container *ngIf="getEventsByDay(monthDate.date).length > 0">
-          <ng-container *ngFor="let event of getEventsByDay(monthDate.date); let i=index">
-            <div class="has-event" [style.backgroundColor]="event.background_color"
+        <ng-container *ngIf="getEventsByDay(monthDate).length > 0">
+          <ng-container *ngFor="let event of getEventsByDay(monthDate); let i=index">
+            <div class="has-event" 
+              [class.if-empty-event]="monthDate.hasEvent===false"
+              [style.backgroundColor]="event.background_color"
               [class.if-event-start]="ifEventStart(monthDate.date, event.start_date)"
-              [class.if-event-end]="ifEventEnd(monthDate.date, event.end_date)">
-
+              [class.if-event-end]="ifEventEnd(monthDate.date, event.end_date)"
+              [class.if-empty-event]="event.id === 0 ? true : false" >
               <div *ngIf="eventTitle(monthDate.date, event.start_date); else hiddenEventTitle">
                 {{ event.description}}
               </div>
@@ -47,6 +49,7 @@
             </div>
           </ng-container>
         </ng-container>
+
       </div>
     </div>
   </div>
