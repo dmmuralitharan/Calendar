@@ -163,26 +163,6 @@ export class CalendarService {
     }
   }
 
-  createDateFromDMY(dateString: any): Date {
-    let _parts = dateString.split('-');
-    let _year = _parts[0];
-    let _month = _parts[1];
-    let _day = _parts[2];
-    _day = _day.padStart(2, '0');
-    _month = _month.padStart(2, '0');
-    return new Date(_year, _month - 1, _day);
-  }
-
-  emptyEvent: event = {
-    id: 0,
-    batch_code: '0000',
-    start_date: new Date(),
-    end_date: new Date(),
-    description: 'empty',
-    background_color: '#999999',
-    location: 'empty',
-  };
-
   getEventsByDay(monthDate: monthDate) {
     let day = monthDate.date;
     let filteredEvents: event[] = [];
@@ -205,6 +185,28 @@ export class CalendarService {
     monthDate.hasEvent = hasEvents;
     return filteredEvents;
   }
+
+
+  // utils
+  createDateFromDMY(dateString: any): Date {
+    let _parts = dateString.split('-');
+    let _year = _parts[0];
+    let _month = _parts[1];
+    let _day = _parts[2];
+    _day = _day.padStart(2, '0');
+    _month = _month.padStart(2, '0');
+    return new Date(_year, _month - 1, _day);
+  }
+
+  // emptyEvent: event = {
+  //   id: 0,
+  //   batch_code: '0000',
+  //   start_date: new Date(),
+  //   end_date: new Date(),
+  //   description: 'empty',
+  //   background_color: '#999999',
+  //   location: 'empty',
+  // };
 
   ifEventStart(monthDate: Date, eventStartDate: Date): boolean {
     eventStartDate = new Date(eventStartDate);

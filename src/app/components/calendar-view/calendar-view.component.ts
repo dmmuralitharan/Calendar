@@ -42,6 +42,7 @@ export class CalendarViewComponent implements OnInit {
     this.monthYearTitle = this._calendar.monthYearTitle;
   }
 
+  // event
   getEventsByDay(monthDate: monthDate) {
     return this._calendar.getEventsByDay(monthDate);
   }
