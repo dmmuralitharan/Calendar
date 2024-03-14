@@ -99,7 +99,7 @@ header .btns .btn.today:hover {
   border-bottom: 0.1px solid var(--hairline);
 }
 
-.calendar-container .days .day-wrapper .day{
+.calendar-container .days .day-wrapper .day {
   text-align: center;
   transition: all 0.3s;
   display: flex;
@@ -110,7 +110,7 @@ header .btns .btn.today:hover {
   font-weight: var(--fw-regular-400);
 }
 
-.calendar-container .days .day-wrapper .day > span{
+.calendar-container .days .day-wrapper .day > span {
   height: 25px;
   width: 25px;
   padding: 5px;
@@ -156,7 +156,7 @@ header .btns .btn.today:hover {
 }
 
 .event-desc {
-  display: block; 
+  display: block;
   width: 100%;
 }
 
@@ -177,4 +177,3 @@ header .btns .btn.today:hover {
 .if-empty-event {
   opacity: 0;
 }
-
