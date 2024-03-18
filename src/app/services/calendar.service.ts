@@ -47,9 +47,29 @@ export class CalendarService {
   fetchEvents(): void {
     this.getEvents().subscribe((data: event[]) => {
       this.events = this.eventSort([...data]);
-      // return this.events
+      // return this.events = data
     });
   }
+
+  // eventSort(events: any[]) {
+  //    events.sort((a, b) => {
+  //     const startDateA = new Date(a.start_date);
+  //     const startDateB = new Date(b.start_date);
+
+  //     // Sort by start date
+  //     if (startDateA.getTime() <= startDateB.getTime()) {
+  //       return startDateA.getTime() - startDateB.getTime();
+  //     } else {
+  //       // If start dates are equal, sort by duration (end date - start date)
+  //       const endDateA = new Date(a.end_date);
+  //       const endDateB = new Date(b.end_date);
+  //       const durationA = endDateA.getTime() - startDateA.getTime();
+  //       const durationB = endDateB.getTime() - startDateB.getTime();
+  //       return durationB - durationA;
+  //     }
+  //   });
+  //   return events
+  // }
 
   eventSort(events: event[]) {
     events.sort((a: any, b: any) => {
@@ -63,10 +83,13 @@ export class CalendarService {
 
       return dateGapB - dateGapA;
     });
-
+    console.log(events);
+    
     return events;
   }
 
+ 
+  
   changeCurrentMonth(): void {
     this.currentMonth = this.date.getMonth();
     this.currentYear = this.date.getFullYear();
@@ -176,10 +199,7 @@ export class CalendarService {
         filteredEvents.push(event);
         hasEvents = true;
       }
-      //  else {
-      //   filteredEvents.push(this.emptyEvent)
-      //   hasEvents = false;
-      // }
+      
     });
 
     monthDate.hasEvent = hasEvents;

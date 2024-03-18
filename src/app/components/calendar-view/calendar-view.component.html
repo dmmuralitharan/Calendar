@@ -26,7 +26,8 @@
         <ng-container *ngIf="getEventsByDay(monthDate).length > 0">
           <ng-container *ngFor="let event of getEventsByDay(monthDate); let i=index">
             <ng-container *ngIf="i < 2">
-              <div class="has-event" [class.if-empty-event]="monthDate.hasEvent===false"
+              <div class="has-event" 
+                [class.if-empty-event]="monthDate.hasEvent===false"
                 [class.if-event-start]="ifEventStart(monthDate.date, event.start_date)"
                 [class.if-event-end]="ifEventEnd(monthDate.date, event.end_date)">
                 <div *ngIf="eventTitle(monthDate.date, event.start_date); else hiddenEventTitle">
@@ -35,11 +36,12 @@
 
                 <ng-template #hiddenEventTitle>
                   <div style="opacity: 0;">
-                    <span href="" class="event-desc">
+                    <span class="event-desc">
                       {{ event.description}}
                     </span>
                   </div>
                 </ng-template>
+               
               </div>
             </ng-container>
           </ng-container>
@@ -49,6 +51,13 @@
             </span>
           </ng-container>
         </ng-container>
+        <ng-template #noEvent>
+          <div style="opacity: 0;">
+            <span class="event-desc">
+              "No Event"
+            </span>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>

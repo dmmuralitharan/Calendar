@@ -55,7 +55,7 @@ header .btns .btn.today:hover {
   display: flex;
   flex-direction: column;
   margin: 0rem 0.1rem;
-  height: 80dvh;
+  max-height: 80svh;
 }
 
 .calendar-container .weekdays {
@@ -86,7 +86,7 @@ header .btns .btn.today:hover {
 .calendar-container .days {
   display: flex;
   flex-wrap: wrap;
-  min-height: 80dvh;
+  max-height: 100%;
   border-right: 0.1px solid var(--hairline);
 }
 
@@ -94,7 +94,7 @@ header .btns .btn.today:hover {
   display: flex;
   flex-direction: column;
   width: calc((100% / 7) - 0.001px);
-  height: 100px;
+  height: 90px;
   border-left: 0.1px solid var(--hairline);
   border-bottom: 0.1px solid var(--hairline);
 }
