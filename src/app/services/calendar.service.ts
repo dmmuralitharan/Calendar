@@ -51,42 +51,47 @@ export class CalendarService {
     });
   }
 
-  // eventSort(events: any[]) {
-  //    events.sort((a, b) => {
-  //     const startDateA = new Date(a.start_date);
-  //     const startDateB = new Date(b.start_date);
-
-  //     // Sort by start date
-  //     if (startDateA.getTime() <= startDateB.getTime()) {
-  //       return startDateA.getTime() - startDateB.getTime();
-  //     } else {
-  //       // If start dates are equal, sort by duration (end date - start date)
-  //       const endDateA = new Date(a.end_date);
-  //       const endDateB = new Date(b.end_date);
-  //       const durationA = endDateA.getTime() - startDateA.getTime();
-  //       const durationB = endDateB.getTime() - startDateB.getTime();
-  //       return durationB - durationA;
-  //     }
-  //   });
-  //   return events
-  // }
-
-  eventSort(events: event[]) {
-    events.sort((a: any, b: any) => {
+  eventSort(events: any[]) {
+     events.sort((a, b) => {
       const startDateA = new Date(a.start_date);
-      const endDateA = new Date(a.end_date);
       const startDateB = new Date(b.start_date);
-      const endDateB = new Date(b.end_date);
 
-      const dateGapA = endDateA.getTime() - startDateA.getTime();
-      const dateGapB = endDateB.getTime() - startDateB.getTime();
-
-      return dateGapB - dateGapA;
+      // Sort by start date
+      if (startDateA.getTime() <= startDateB.getTime()) {
+        return startDateA.getTime() - startDateB.getTime();
+      } else {
+        // If start dates are equal, sort by duration (end date - start date)
+        const endDateA = new Date(a.end_date);
+        const endDateB = new Date(b.end_date);
+        const durationA = endDateA.getTime() - startDateA.getTime();
+        const durationB = endDateB.getTime() - startDateB.getTime();
+        return durationB - durationA;
+      }
     });
-    console.log(events);
-    
-    return events;
+    return events
   }
+
+  // eventSort(events: event[]) {
+  //   events.sort((a: any, b: any) => {
+  //     const startDateA = new Date(a.start_date);
+  //     const endDateA = new Date(a.end_date);
+  //     const startDateB = new Date(b.start_date);
+  //     const endDateB = new Date(b.end_date);
+
+  //     const durationA = endDateA.getTime() - startDateA.getTime();
+  //     const durationB = endDateB.getTime() - startDateB.getTime();
+
+  //     // if (durationA === durationB) {
+  //     //   return startDateA.getTime() - startDateB.getTime();
+  //     // } else {
+  //     //   return durationB - durationA;
+  //     // }
+  //     return durationB - durationA;
+  //   });
+  //   console.log(events);
+    
+  //   return events;
+  // }
 
  
   
