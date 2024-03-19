@@ -52,15 +52,13 @@ export class CalendarService {
   }
 
   eventSort(events: any[]) {
-     events.sort((a, b) => {
+    events.sort((a, b) => {
       const startDateA = new Date(a.start_date);
       const startDateB = new Date(b.start_date);
 
-      // Sort by start date
       if (startDateA.getTime() <= startDateB.getTime()) {
         return startDateA.getTime() - startDateB.getTime();
       } else {
-        // If start dates are equal, sort by duration (end date - start date)
         const endDateA = new Date(a.end_date);
         const endDateB = new Date(b.end_date);
         const durationA = endDateA.getTime() - startDateA.getTime();
@@ -68,7 +66,7 @@ export class CalendarService {
         return durationB - durationA;
       }
     });
-    return events
+    return events;
   }
 
   // eventSort(events: event[]) {
@@ -89,12 +87,10 @@ export class CalendarService {
   //     return durationB - durationA;
   //   });
   //   console.log(events);
-    
+
   //   return events;
   // }
 
- 
-  
   changeCurrentMonth(): void {
     this.currentMonth = this.date.getMonth();
     this.currentYear = this.date.getFullYear();
@@ -204,13 +200,11 @@ export class CalendarService {
         filteredEvents.push(event);
         hasEvents = true;
       }
-      
     });
 
     monthDate.hasEvent = hasEvents;
     return filteredEvents;
   }
-
 
   // utils
   createDateFromDMY(dateString: any): Date {
@@ -232,6 +226,17 @@ export class CalendarService {
   //   background_color: '#999999',
   //   location: 'empty',
   // };
+
+  showEventCount: number = 2;
+  onShowEventCount(): void {
+    if (this.monthDates.length / 7 === 6) {
+      this.showEventCount = 2;
+    } else if (this.monthDates.length / 7 === 5) {
+      this.showEventCount = 3;
+    } else {
+      this.showEventCount = 0;
+    }
+  }
 
   ifEventStart(monthDate: Date, eventStartDate: Date): boolean {
     eventStartDate = new Date(eventStartDate);

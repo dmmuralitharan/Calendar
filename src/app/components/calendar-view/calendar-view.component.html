@@ -23,10 +23,12 @@
         <div class="day" [class.next-or-prev]="monthDate.isPastMonthDay || monthDate.isNextMonthDay">
           <span>{{ (monthDate.date | date: 'd') }}</span>
         </div>
+        <div class="event-mapper">
         <ng-container *ngIf="getEventsByDay(monthDate).length > 0">
           <ng-container *ngFor="let event of getEventsByDay(monthDate); let i=index">
             <ng-container *ngIf="i < 2">
               <div class="has-event" 
+                [style.backgroundColor] = "event.background_color"
                 [class.if-empty-event]="monthDate.hasEvent===false"
                 [class.if-event-start]="ifEventStart(monthDate.date, event.start_date)"
                 [class.if-event-end]="ifEventEnd(monthDate.date, event.end_date)">
@@ -45,12 +47,13 @@
               </div>
             </ng-container>
           </ng-container>
-          <ng-container *ngIf="getEventsByDay(monthDate).length > 2">
+          <ng-container *ngIf="getEventsByDay(monthDate).length > showEventCount">
             <span class="has-event if-more-two-events">
               {{ getEventsByDay(monthDate).length - 2 }} more
             </span>
           </ng-container>
         </ng-container>
+      </div>
         <ng-template #noEvent>
           <div style="opacity: 0;">
             <span class="event-desc">

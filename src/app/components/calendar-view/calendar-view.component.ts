@@ -13,6 +13,7 @@ export class CalendarViewComponent implements OnInit {
   days: string[] = [];
   monthDates: monthDate[] = [];
   events: event[] = [];
+  showEventCount: number = 0;
   constructor(private _calendar: CalendarService) {}
 
   ngOnInit(): void {
@@ -25,6 +26,8 @@ export class CalendarViewComponent implements OnInit {
     });
     this._calendar.fetchEvents();
     this.events = this._calendar.events;
+
+    this.showEventCount = this._calendar.showEventCount;
   }
 
   currentMonthBtn(): void {

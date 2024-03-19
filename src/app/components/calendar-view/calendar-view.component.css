@@ -98,6 +98,7 @@ header .btns .btn.today:hover {
   width: calc((100% / 7) - 0.001px);
   border-left: 0.1px solid var(--hairline);
   border-bottom: 0.1px solid var(--hairline);
+  position: relative;
 }
 
 .calendar-container .days .day-wrapper .day {
@@ -133,6 +134,13 @@ header .btns .btn.today:hover {
   color: var(--text-light);
 }
 
+.event-mapper {
+  width: 100%;
+  margin-top: 26px;
+  position: absolute;
+  top: 0;
+}
+
 .has-event {
   margin-top: 1px;
   margin-inline: -1px;
@@ -146,6 +154,8 @@ header .btns .btn.today:hover {
 }
 
 .if-more-two-events {
+  display: block;
+  width: 100%;
   background-color: var(--text-light);
   color: var(--text-clr-200);
   margin-inline: 2px;
